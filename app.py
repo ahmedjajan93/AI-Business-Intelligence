@@ -142,67 +142,67 @@ if "qa_chain" in st.session_state:
             st.warning("Risk parsing failed. Showing raw output:")
             st.text(risks.get("raw", "No data."))
 
-   with tab7:
-    st.markdown("### 📊 SWOT Radar Chart")
-    swot_text = st.session_state.swot
-    
-    if swot_text:  # Only proceed if we have SWOT analysis
-        categories = ['Strengths', 'Weaknesses', 'Opportunities', 'Threats']
-        values = [
-            swot_text.lower().count("strength"),
-            swot_text.lower().count("weakness"),
-            swot_text.lower().count("opportunit"),
-            swot_text.lower().count("threat")
-        ]
+    with tab7:
+        st.markdown("### 📊 SWOT Radar Chart")
+        swot_text = st.session_state.swot
         
-        # Ensure we have at least some values to plot
-        if any(values):  # Check if any value is non-zero
-            fig = go.Figure(data=go.Scatterpolar(
-                r=values,
-                theta=categories,
-                fill='toself',
-                name='SWOT Intensity'
-            ))
-
-            fig.update_layout(
-                polar=dict(
-                    radialaxis=dict(visible=True, range=[0, max(values) + 2])
-                ),
-                showlegend=False
-            )
-            st.plotly_chart(fig, use_container_width=True)
+        if swot_text:  # Only proceed if we have SWOT analysis
+            categories = ['Strengths', 'Weaknesses', 'Opportunities', 'Threats']
+            values = [
+                swot_text.lower().count("strength"),
+                swot_text.lower().count("weakness"),
+                swot_text.lower().count("opportunit"),
+                swot_text.lower().count("threat")
+            ]
+            
+            # Ensure we have at least some values to plot
+            if any(values):  # Check if any value is non-zero
+                fig = go.Figure(data=go.Scatterpolar(
+                    r=values,
+                    theta=categories,
+                    fill='toself',
+                    name='SWOT Intensity'
+                ))
+    
+                fig.update_layout(
+                    polar=dict(
+                        radialaxis=dict(visible=True, range=[0, max(values) + 2])
+                    ),
+                    showlegend=False
+                )
+                st.plotly_chart(fig, use_container_width=True)
+            else:
+                st.warning("No SWOT keywords detected to generate radar chart")
         else:
-            st.warning("No SWOT keywords detected to generate radar chart")
-    else:
-        st.warning("No SWOT analysis available")
+            st.warning("No SWOT analysis available")
 
     with tab8:
-    st.markdown("### 📉 Risk Radar Chart")
-    risks = st.session_state.risks
-    
-    if isinstance(risks, dict) and 'error' not in risks and risks:
-        radar_categories = list(risks.keys())
-        severity_scores = [risks[cat]['score'] for cat in radar_categories if 'score' in risks[cat]]
+        st.markdown("### 📉 Risk Radar Chart")
+        risks = st.session_state.risks
         
-        if severity_scores:  # Only proceed if we have scores
-            fig = go.Figure(data=go.Scatterpolar(
-                r=severity_scores,
-                theta=radar_categories,
-                fill='toself',
-                name='Risk Severity'
-            ))
-
-            fig.update_layout(
-                polar=dict(
-                    radialaxis=dict(visible=True, range=[0, max(severity_scores) + 2])
-                ),
-                showlegend=False
-            )
-            st.plotly_chart(fig, use_container_width=True)
+        if isinstance(risks, dict) and 'error' not in risks and risks:
+            radar_categories = list(risks.keys())
+            severity_scores = [risks[cat]['score'] for cat in radar_categories if 'score' in risks[cat]]
+            
+            if severity_scores:  # Only proceed if we have scores
+                fig = go.Figure(data=go.Scatterpolar(
+                    r=severity_scores,
+                    theta=radar_categories,
+                    fill='toself',
+                    name='Risk Severity'
+                ))
+    
+                fig.update_layout(
+                    polar=dict(
+                        radialaxis=dict(visible=True, range=[0, max(severity_scores) + 2])
+                    ),
+                    showlegend=False
+                )
+                st.plotly_chart(fig, use_container_width=True)
+            else:
+                st.warning("No risk scores available for radar chart")
         else:
-            st.warning("No risk scores available for radar chart")
-    else:
-        st.warning("Risk data not available or not in expected format")
+            st.warning("Risk data not available or not in expected format")
 
     with tab9:
         st.markdown("### 📈 Stock Trend Chart")
