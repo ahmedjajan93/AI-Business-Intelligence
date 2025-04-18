@@ -1,0 +1,12 @@
+streamlit
+langchain
+faiss-cpu
+requests
+beautifulsoup4
+openai
+pillow
+torch
+sentence-transformers
+Selenium
+yfinance
+plotly
