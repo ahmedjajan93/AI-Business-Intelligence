@@ -90,7 +90,7 @@ if "qa_chain" in st.session_state:
             st.markdown(f"**Answer:** {answer}")
 
     with tab2:
-        st.markdown("### SWOT Analysis")
+    
         st.markdown(st.session_state.swot)
 
     with tab3:
