@@ -1,6 +1,6 @@
-# 📊 InsightAgent – Business Intelligence Agent
+# 📊 AI Business Intelligence Agent
 
-InsightAgent is an AI-powered business intelligence tool built using LangChain and Streamlit. It scrapes company websites, retrieves insights using LLMs, generates SWOT analyses, and provides mock financial/news data.
+AI Business Intelligence Agent is an AI-powered business intelligence tool built using LangChain and Streamlit. It scrapes company websites, retrieves insights using LLMs, generates SWOT analyses, and provides mock financial/news data.
 
 ---
 
@@ -44,8 +44,8 @@ BUSINESS_INTELLIGENCE_AGENT/
 
 ```bash
 # 1. Clone the repo
-$ git clone https://github.com/yourusername/business_intelligence_agent.git
-$ cd business_intelligence_agent
+$ git clone https://github.com/ahmedjajan93/AI-Business-Intelligence.gi
+$ cd AI-Business-Intelligence
 
 # 2. Create and activate virtual environment (optional)
 $ python -m venv venv
