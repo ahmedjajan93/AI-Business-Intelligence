@@ -93,21 +93,22 @@ if "qa_chain" in st.session_state:
         st.markdown("### SWOT Analysis")
         st.markdown(st.session_state.swot)
 
-   with tab3:
+    with tab3:
         st.markdown("### 📰 Latest News")
         for item in st.session_state.news:
             st.write(f"- {item}")
-
+    
         st.markdown("### 💹 Stock Data")
         stock = st.session_state.stock
-
-        if stock and all(k in stock for k in ["symbol", "price", "change", "market_cap"]):
+        
+        # Check if stock data exists and has required fields
+        if stock and all(key in stock for key in ['symbol', 'price', 'change', 'market_cap']):
             st.write(f"**Symbol**: {stock['symbol']}")
             st.write(f"**Price**: {stock['price']}")
             st.write(f"**Change**: {stock['change']}")
             st.write(f"**Market Cap**: {stock['market_cap']}")
         else:
-            st.warning("Stock data not available. Please check the company name or try again later.")
+            st.warning("Stock data not available for this company. It may not be publicly traded or the data couldn't be retrieved.")
 
     with tab4:
         st.markdown("### 🧠 AI Summary of Website")
