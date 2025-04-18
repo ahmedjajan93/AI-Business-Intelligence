@@ -10,3 +10,4 @@ sentence-transformers
 Selenium
 yfinance
 plotly
+langchain_community
